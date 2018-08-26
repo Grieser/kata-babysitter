@@ -22,5 +22,11 @@ module.exports = {
             var total = (bedTime.format("HH") - start.format("HH")) * 12;
         }
         return total;
+    },
+    calcAfterBedTime: function(startTime, endTime) {
+        var start = moment(startTime, "HH:mm A");
+        var bedTime = moment(endTime, "HH:mm A");
+        var total = (bedTime.format("HH") - start.format("HH")) * 8;
+        return total;
     }
 }
