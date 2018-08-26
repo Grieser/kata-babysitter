@@ -10,18 +10,18 @@ var self = module.exports = {
         if (start.isBefore(startLimit) || end.isAfter(endLimit) && end.isBefore(startLimit)) {
             return "Error";
         }
-        var startWage = self.calcStartToMidnight(start, bedTime, 12);
-        var AfterBedWage = self.calcStartToMidnight(bedTime, end, 8);
+        var startWage = self.calcWage(start, bedTime, 12);
+        var AfterBedWage = self.calcWage(bedTime, end, 8);
         var midNight = moment("00:00 AM", "HH:mm A");
         if (end.isAfter(midNight) && end.isBefore(start)) {
-            var AfterMidNightWage = (end.format("HH") - midNight.format("HH")) * 16; 
+            var AfterMidNightWage = self.calcWage(midNight, end, 16);
         } else { 
             var AfterMidNightWage = 0;
         }
         var total = startWage + AfterBedWage + AfterMidNightWage;
         return "$" + total;
     },
-    calcStartToMidnight: function(startTime, endTime, rate) {
+    calcWage: function(startTime, endTime, rate) {
         var start = moment(startTime, "HH:mm A");
         var end = moment(endTime, "HH:mm A");
         var midNight = moment("00:00 AM", "HH:mm A");

@@ -17,23 +17,23 @@ describe('wageCalc', function(){
         assert.equal(result, "Error");
     })
 
-    it('calcStartToMidnight should return 24 for 2 hours of work before bed', function() {
-        let result = getWage.calcStartToMidnight("5:00 PM", "7:00 PM", 12);
+    it('calcWage should return 24 for 2 hours of work before bed', function() {
+        let result = getWage.calcWage("5:00 PM", "7:00 PM", 12);
         assert.equal(result, 24);
     })
 
-    it('calcStartToMidnight should return 84 for 7 hours of work even if bedtime is after midnight', function(){
-        let result = getWage.calcStartToMidnight("5:00 PM", "2:00 AM", 12);
+    it('calcWage should return 84 for 7 hours of work even if bedtime is after midnight', function(){
+        let result = getWage.calcWage("5:00 PM", "2:00 AM", 12);
         assert.equal(result, 84);
     })
 
-    it('calcStartToMidnight should return 16 for 2 hours of work after bedtime', function(){
-        let result = getWage.calcStartToMidnight("7:00 PM" , "9:00 PM", 8 );
+    it('calcWage should return 16 for 2 hours of work after bedtime', function(){
+        let result = getWage.calcWage("7:00 PM" , "9:00 PM", 8 );
         assert.equal(result, 16);
     })
 
-    it('calcStarttoMidnight should return 40 for 5 hours of after bedtime work even if job ends after midnight', function(){
-        let result = getWage.calcStartToMidnight("7:00 PM", "3:00", 8);
+    it('calcWage should return 40 for 5 hours of after bedtime work even if job ends after midnight', function(){
+        let result = getWage.calcWage("7:00 PM", "3:00", 8);
         assert.equal(result, 40);
     })
 
