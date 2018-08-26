@@ -32,4 +32,9 @@ describe('wageCalc', function(){
         assert.equal(result, 16);
     })
 
+    it('calcStarttoMidnight should return 40 for 5 hours of after bedtime work even if job ends after midnight', function(){
+        let result = getWage.calcStartToMidnight("7:00 PM", "3:00", 8);
+        assert.equal(result, 40);
+    } )
+
 });
