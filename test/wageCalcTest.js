@@ -16,4 +16,9 @@ describe('wageCalc', function(){
         let result = getWage.getWage('5:00 PM', '7:00 PM', "4:01 AM")
         assert.equal(result, "Error");
     })
+
+    it('calcStartToBedTime wage should return 24 for 2 hours of work before bed', function() {
+        let result = getWage.calcStartToBedTime("5:00 PM", "7:00 PM");
+        assert.equal(result, 24);
+    })
 });

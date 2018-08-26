@@ -11,5 +11,11 @@ module.exports = {
             return "Error";
         }
         return "$0";
+    },
+    calcStartToBedTime: function(startTime, endTime) {
+        var start = moment(startTime, "HH:mm A");
+        var bedTime = moment(endTime, "HH:mm A");
+        var total = (bedTime.format("HH") - start.format("HH")) * 12;
+        return total;
     }
 }
