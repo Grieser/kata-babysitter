@@ -12,21 +12,15 @@ module.exports = {
         }
         return "$0";
     },
-    calcStartToBedTime: function(startTime, endTime) {
+    calcStartToMidnight: function(startTime, endTime, rate) {
         var start = moment(startTime, "HH:mm A");
-        var bedTime = moment(endTime, "HH:mm A");
+        var end = moment(endTime, "HH:mm A");
         var midNight = moment("00:00 AM", "HH:mm A");
-        if (bedTime.isAfter(midNight) && bedTime.isBefore(start)) {
-            var total = (24 - start.format("HH")) * 12;
+        if (end.isAfter(midNight) && end.isBefore(start)) {
+            var total = (24 - start.format("HH")) * rate;
         } else {
-            var total = (bedTime.format("HH") - start.format("HH")) * 12;
+            var total = (end.format("HH") - start.format("HH")) * rate;
         }
-        return total;
-    },
-    calcAfterBedTime: function(startTime, endTime) {
-        var start = moment(startTime, "HH:mm A");
-        var bedTime = moment(endTime, "HH:mm A");
-        var total = (bedTime.format("HH") - start.format("HH")) * 8;
         return total;
     }
 }
