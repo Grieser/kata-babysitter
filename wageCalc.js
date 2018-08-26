@@ -15,7 +15,12 @@ module.exports = {
     calcStartToBedTime: function(startTime, endTime) {
         var start = moment(startTime, "HH:mm A");
         var bedTime = moment(endTime, "HH:mm A");
-        var total = (bedTime.format("HH") - start.format("HH")) * 12;
+        var midNight = moment("00:00 AM", "HH:mm A");
+        if (bedTime.isAfter(midNight) && bedTime.isBefore(start)) {
+            var total = (24 - start.format("HH")) * 12;
+        } else {
+            var total = (bedTime.format("HH") - start.format("HH")) * 12;
+        }
         return total;
     }
 }
