@@ -1,16 +1,19 @@
 var moment = require('moment');
 moment().format();
 
-module.exports = {
+var self = module.exports = {
     getWage: function(startJob, bedTime, endJob){
         var start = moment(startJob, "HH:mm A");
         var end = moment(endJob, "HH:mm A");
         var startLimit = moment("5:00 PM", "HH:mm A");
         var endLimit = moment("4:00 AM", "HH:mm A");
-        if (start.isBefore(startLimit) || end.isAfter(endLimit)) {
+        if (start.isBefore(startLimit) || end.isAfter(endLimit) && end.isBefore(startLimit)) {
             return "Error";
         }
-        return "$0";
+        var startWage = self.calcStartToMidnight(start, bedTime, 12);
+        var AfterBedWage = self.calcStartToMidnight(bedTime, end, 8);
+        var total = startWage + AfterBedWage;
+        return "$" + total;
     },
     calcStartToMidnight: function(startTime, endTime, rate) {
         var start = moment(startTime, "HH:mm A");

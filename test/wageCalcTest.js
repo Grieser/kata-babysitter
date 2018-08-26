@@ -35,6 +35,11 @@ describe('wageCalc', function(){
     it('calcStarttoMidnight should return 40 for 5 hours of after bedtime work even if job ends after midnight', function(){
         let result = getWage.calcStartToMidnight("7:00 PM", "3:00", 8);
         assert.equal(result, 40);
-    } )
+    })
+
+    it ('getWage should return $40 for 4 hours of work if start, bedtime and end time are all two hours apart and ends before midnight', function(){
+        let result = getWage.getWage("5:00 PM", "7:00 PM", "9:00 PM");
+        assert.equal(result, "$40");
+    })
 
 });
