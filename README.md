@@ -5,8 +5,8 @@ This application is to determine a baby sitter's wage given the start time, bed 
 To test the application run: 
 
 npm install mocha chai --save-dev
-npm install moment --save
-npm test
+<br>npm install moment --save
+<br>npm test
 
 
 Thanks,
