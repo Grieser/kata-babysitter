@@ -42,4 +42,9 @@ describe('wageCalc', function(){
         assert.equal(result, "$40");
     })
 
+    it ('getWage should return $108 for 3 hours of work before bed time, 3 hours of work after bed time until midnight, and 3 hours after midnight', function(){
+        let result = getWage.getWage("6:00 PM", "9:00 PM", "3:00 AM");
+        assert.equal(result, "$108");
+    })
+
 });

@@ -12,7 +12,13 @@ var self = module.exports = {
         }
         var startWage = self.calcStartToMidnight(start, bedTime, 12);
         var AfterBedWage = self.calcStartToMidnight(bedTime, end, 8);
-        var total = startWage + AfterBedWage;
+        var midNight = moment("00:00 AM", "HH:mm A");
+        if (end.isAfter(midNight) && end.isBefore(start)) {
+            var AfterMidNightWage = (end.format("HH") - midNight.format("HH")) * 16; 
+        } else { 
+            var AfterMidNightWage = 0;
+        }
+        var total = startWage + AfterBedWage + AfterMidNightWage;
         return "$" + total;
     },
     calcStartToMidnight: function(startTime, endTime, rate) {
